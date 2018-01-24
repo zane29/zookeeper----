@@ -1,0 +1,152 @@
+# 根节点
+create /levam-app-config
+
+
+#====================================================
+#
+# common 配置[18个配置项]
+#
+#====================================================
+create /levam-app-config/common-config
+# 登录用户的session过期时间，秒
+create /levam-app-config/common-config/session.expire.time           3600
+# redis缓存配置
+create /levam-app-config/common-config/spring.redis.host             10.10.9.103
+create /levam-app-config/common-config/spring.redis.port             6379
+create /levam-app-config/common-config/spring.redis.timeout          5000
+# 数据源配置
+create /levam-app-config/common-config/datasource.ip                 10.10.9.103
+create /levam-app-config/common-config/datasource.port               3306
+create /levam-app-config/common-config/datasource.url.param          useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false
+create /levam-app-config/common-config/spring.datasource.username    root
+create /levam-app-config/common-config/spring.datasource.password    1212
+#前端错误码初始化文件位置
+create /levam-app-config/common-config/return.code.file.path         http://10.10.9.104:5080/return_code.properties
+#qpid相关配置
+create /levam-app-config/common-config/qpid.broker.host              10.10.9.103
+create /levam-app-config/common-config/qpid.broker.port              5672
+create /levam-app-config/common-config/qpid.broker.user              admin
+create /levam-app-config/common-config/qpid.broker.pwd               admin
+#mongodb配置
+create /levam-app-config/common-config/spring.data.mongodb.host      10.10.9.103
+create /levam-app-config/common-config/spring.data.mongodb.password
+create /levam-app-config/common-config/spring.data.mongodb.port      27017
+create /levam-app-config/common-config/spring.data.mongodb.username
+
+
+#====================================================
+#
+# 数据中继[4个配置项]
+#
+#====================================================
+create /levam-app-config/kernel.ser-biz-msgMonitor
+# 服务端口
+create /levam-app-config/kernel.ser-biz-msgMonitor/server.port                            6004
+# 刷新实时gps信息到redis的时间间隔，单位毫秒
+create /levam-app-config/kernel.ser-biz-msgMonitor/real.time.gps.flush.time.interval      100
+# sos告警录像默认时长(秒)，默认900秒
+create /levam-app-config/kernel.ser-biz-msgMonitor/default.sos.record.duration            60
+# 暴露的服务端口
+create /levam-app-config/kernel.ser-biz-msgMonitor/spring.dubbo.protocol.port             20885
+
+
+#====================================================
+#
+# 实时指挥[4个配置项]
+#
+#====================================================
+create /levam-app-config/kernel.ser-biz-instruct
+# 服务端口
+create /levam-app-config/kernel.ser-biz-instruct/server.port             6008
+# 视频录制最短时长
+create /levam-app-config/kernel.ser-biz-instruct/record.min.duration     10
+# 视频录制最长时长
+create /levam-app-config/kernel.ser-biz-instruct/record.max.duration     1200
+# 最近操作对象的保存大小
+create /levam-app-config/kernel.ser-biz-instruct/command.recently.size   20
+# gps附近的半径范围配置，单位米
+create /levam-app-config/kernel.ser-biz-instruct/around.radius           500
+# sos告警逾期时间阈值，单位秒
+create /levam-app-config/kernel.ser-biz-instruct/sos.overdue.time        1200
+
+
+#====================================================
+#
+# 视音频[1个配置项]
+#
+#====================================================
+create /levam-app-config/kernel.ser-biz-audio
+# 服务端口
+create /levam-app-config/kernel.ser-biz-audio/server.port                6003
+
+
+#====================================================
+#
+# 系统配置管理[2个配置项]
+#
+#====================================================
+create /levam-app-config/auth-cas
+# 服务端口
+create /levam-app-config/auth-cas/server.port                  6211
+# dubbo端口
+create /levam-app-config/auth-cas/spring.dubbo.protocol.port   20880
+
+
+#====================================================
+#
+# 授权管理[2个配置项]
+#
+#====================================================
+create /levam-app-config/uom-sys-license
+# 服务端口
+create /levam-app-config/uom-sys-license/server.port                  6221
+# dubbo端口
+create /levam-app-config/uom-sys-license/spring.dubbo.protocol.port   20890
+
+
+#====================================================
+#
+# 统一运维-datarepeater[2个配置项]
+#
+#====================================================
+create /levam-app-config/kernel.ser-base-datarepeater
+create /levam-app-config/kernel.ser-base-datarepeater/timer.resend.qpid.cron         "* 0/30 * * * ?"
+create /levam-app-config/kernel.ser-base-datarepeater/timer.delete.file.cron         "* 0/30 * * * ?"
+
+
+#====================================================
+#
+# 统一运维-manager[7个配置项]
+#
+#====================================================
+create /levam-app-config/uom-device-manager
+#执法仪在线状态在redis缓存中的有效时间 s(秒)
+create /levam-app-config/uom-device-manager/device.cache.valid.time                  10
+#ntp服务
+create /levam-app-config/uom-device-manager/gmvcs.ntp                                192.168.1.1,192.168.1.2,192.168.1.3
+#流媒体网关服务登录名称
+create /levam-app-config/uom-device-manager/gmvcs.gateway.username                   admin
+#流媒体网关服务登录密码
+create /levam-app-config/uom-device-manager/gmvcs.gateway.password                   admin
+#工作站在线状态在redis缓存中的失效时间 s(秒)
+create /levam-app-config/uom-device-manager/device.workstation.cache.valid.time      60
+#spring缓存类型
+create /levam-app-config/uom-device-manager/spring.cache.type                        REDIS
+#设备在线有效时间
+create /levam-app-config/uom-device-manager/device.online.valid.time                 20
+
+
+#====================================================
+#
+# 统一运维-deamonService[2个配置项]
+#
+#====================================================
+create /levam-app-config/kernel.ser-storage-deamonService
+#挂载点循环扫描时间，一共6个参数：分别代表“秒(0-59) 分钟(0-59) 小时(0-23) 日期(按实际月的天数) 月(0-11) 日期(星期,1-7) ”
+#"?"是因为"月份中的日期"和"星期中的日期"这两个元素互斥的,必须要对其中一个设置"?"
+create /levam-app-config/kernel.ser-storage-deamonService/upload.storage.shedule.cron        "0 0/10 * * * ?"
+#存储服务cron表达式
+create /levam-app-config/kernel.ser-storage-deamonService/record.storage.shedule.cron        "0 0/10 * * * ?"
+
+
+#完毕！
